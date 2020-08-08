@@ -27,7 +27,9 @@ public class QuickStartApplication {
 
     @GetMapping("/test")
     public String test(String a, String key){
-        rabbitTemplate.convertAndSend("iot.space.topic", key, a);
+        for (int i = 0; i < 10; i++) {
+            rabbitTemplate.convertAndSend("iot.space.topic", key, a + i);
+        }
         return "ok";
     }
 
